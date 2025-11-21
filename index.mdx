@@ -1,0 +1,83 @@
+---
+title: InfraMap
+description: Real-time interactive map of your Cloud infrastructure that finds waste, idle resources, and drift across accounts.
+---
+
+# Welcome to InfraMap
+
+InfraMap is a real-time, interactive visualization tool that provides comprehensive visibility into your cloud infrastructure. By continuously discovering and mapping AWS resources across all accounts and regions, InfraMap enables you to instantly identify waste, drift, and potential risks in your cloud environment.
+
+## What is InfraMap?
+
+InfraMap visualizes your AWS infrastructure as an interactive map, showing live relationships between services like EC2, RDS, ECS, VPCs, Lambda, S3, and more. It connects through a **read-only cross-account IAM role** and builds a live graph of every resource and its relationships, giving you instant context to your entire cloud environment.
+
+## Key Capabilities
+
+<CardGroup cols={2}>
+  <Card
+    title="Interactive Cloud Map"
+    icon="map"
+    href="/features/maps"
+  >
+    Visualize live relationships between services, offering immediate context to your cloud environment.
+  </Card>
+  <Card
+    title="Cost Analysis"
+    icon="dollar-sign"
+    href="/features/cost"
+  >
+    Monitor daily cost trends, detect anomalies, and identify idle resources to optimize spending.
+  </Card>
+  <Card
+    title="Risk & Security"
+    icon="shield"
+    href="/features/security"
+  >
+    Automatically detect security misconfigurations like open security groups and public S3 buckets.
+  </Card>
+  <Card
+    title="Drift Detection"
+    icon="git-branch"
+    href="/features/drift"
+  >
+    Identify and rectify deviations in your cloud infrastructure to maintain consistency and compliance.
+  </Card>
+</CardGroup>
+
+## Why InfraMap?
+
+- **See your infrastructure** — Get a complete visual map of all your AWS resources and their relationships
+- **Find waste** — Instantly identify idle resources, orphaned volumes, and unused instances
+- **Track costs** — Understand where your money goes with detailed cost analysis and trends
+- **Detect drift** — Stay on top of infrastructure changes and maintain consistency
+- **Secure your cloud** — Automatically find security misconfigurations before they become problems
+
+## Supported Services
+
+InfraMap supports a wide range of AWS services including:
+
+- **Compute:** EC2, Lambda, ECS, EKS, Fargate
+- **Storage:** S3, EBS
+- **Networking:** VPC, Security Groups, ELB, CloudFront, API Gateway
+- **Databases:** RDS, DynamoDB, ElastiCache
+- **Messaging:** SQS, SNS
+
+Support for additional cloud providers like Google Cloud Platform, Microsoft Azure, and Alibaba Cloud is coming soon.
+
+## Get Started
+
+Ready to map your infrastructure? Get started by:
+
+1. [Sign up for an account](/getting-started/signup)
+2. [Connect your AWS account](/getting-started/connection)
+3. [Explore your infrastructure map](/features/maps)
+
+<CardGroup cols={1}>
+  <Card
+    title="New to InfraMap?"
+    icon="rocket"
+    href="/getting-started/signup"
+  >
+    Start with our getting started guide to connect your first AWS account and see your infrastructure in minutes.
+  </Card>
+</CardGroup>

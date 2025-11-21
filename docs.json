@@ -1,0 +1,84 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "InfraMap Documentation",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/logo/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "getting-started/signup",
+              "getting-started/connection",
+              "getting-started/providers",
+              "getting-started/plans"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "features/resources",
+              "features/cost",
+              "features/security",
+              "features/drift",
+              "features/maps"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Website",
+          "href": "https://www.inframap.cloud",
+          "icon": "house"
+        },
+        {
+          "anchor": "Github",
+          "href": "https://github.com/InfraMapCloud",
+          "icon": "github"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Edit Documentation",
+        "href": "https://github.com/InfraMapCloud/inframap-docs"
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/inframapcloud",
+      "github": "https://github.com/inframapcloud",
+      "linkedin": "https://linkedin.com/company/inframapcloud"
+    }
+  }
+}

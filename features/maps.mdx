@@ -1,0 +1,266 @@
+---
+title: Infrastructure Maps
+description: Visualize your entire AWS infrastructure across accounts and regions. Interactive maps with zoom, expand, and relationship visualization.
+---
+
+# Infrastructure Maps
+
+InfraMap provides interactive, visual maps of your entire AWS infrastructure, giving you a bird's eye view of your organization's cloud environment. Navigate seamlessly from high-level organization views down to individual resources, understanding relationships and dependencies at every level.
+
+## Overview
+
+Infrastructure maps visualize your AWS resources as an interactive graph, showing:
+
+- **Resource relationships** — How resources connect and depend on each other
+- **Hierarchical organization** — Accounts, regions, VPCs, and resource groups
+- **Resource details** — Zoom in to see individual resources and their configurations
+- **Multi-dimensional views** — Organize by account, region, service, or custom groupings
+
+<Info>
+Maps are automatically generated and updated based on your infrastructure scans. Changes in your AWS environment are reflected in the maps as scans complete.
+</Info>
+
+## Multi-Account and Multi-Region Views
+
+### Organization-Wide View
+
+Start with a high-level view of your entire AWS organization:
+
+- **All accounts** — See every AWS account connected to InfraMap
+- **Account relationships** — Visualize how accounts are organized
+- **Cross-account dependencies** — Identify resources that span multiple accounts
+- **Aggregate metrics** — Total resources, costs, and security findings across all accounts
+
+### Account-Level View
+
+Zoom into a specific AWS account to see:
+
+- **All regions** — Every AWS region where resources are deployed
+- **Regional distribution** — Visual representation of where resources are located
+- **Account-specific resources** — All resources within that account
+- **Account metrics** — Cost, security, and resource counts for the account
+
+### Region-Level View
+
+Focus on a specific AWS region to explore:
+
+- **VPCs and networking** — All Virtual Private Clouds in the region
+- **Regional resources** — Resources deployed in that region
+- **Regional relationships** — How resources connect within the region
+- **Cross-region connections** — Resources that connect to other regions
+
+## Hierarchical Navigation
+
+InfraMap's maps support hierarchical navigation, allowing you to drill down from high-level views to specific resources.
+
+### Zoom and Expand
+
+Navigate through different levels of detail:
+
+1. **Organization level** — View all accounts
+2. **Account level** — Expand to see all regions in an account
+3. **Region level** — Expand to see all VPCs and resource groups
+4. **VPC level** — Expand to see resources within a VPC
+5. **Resource group level** — Expand to see individual resources
+6. **Resource level** — View individual resource details and relationships
+
+### Resource Groups
+
+Organize and view resources by:
+
+- **Service type** — Group by EC2, RDS, Lambda, S3, etc.
+- **VPC** — Resources within specific Virtual Private Clouds
+- **Tags** — Custom groupings based on AWS tags
+- **Security groups** — Resources sharing security configurations
+- **Application** — Resources belonging to the same application
+
+<CardGroup cols={2}>
+  <Card
+    title="Resources"
+    icon="server"
+    href="/features/resources"
+  >
+    View detailed information about individual resources in the map.
+  </Card>
+  <Card
+    title="Cost Analysis"
+    icon="dollar-sign"
+    href="/features/cost"
+  >
+    See cost data overlaid on your infrastructure maps.
+  </Card>
+</CardGroup>
+
+## Resource Relationships
+
+One of the most powerful features of infrastructure maps is visualizing relationships between resources.
+
+### Connection Visualization
+
+See how resources connect to each other:
+
+- **Network connections** — Security groups, subnets, and VPC relationships
+- **Service dependencies** — Which services depend on which resources
+- **Data flows** — How data moves between resources
+- **Attachment relationships** — Direct attachments like EBS volumes to EC2 instances
+
+### Example Relationships
+
+**Lambda Functions:**
+- See which **API Gateways** are attached to Lambda functions
+- View **Event sources** like SQS queues or SNS topics
+- Identify **IAM roles** and **VPC configurations** used by functions
+- Track **CloudWatch Logs** and **X-Ray traces** associated with functions
+
+**EC2 Instances:**
+- See which **EBS volumes** are attached to each instance
+- View **Security Groups** and **Network Interfaces**
+- Identify **Load Balancers** that route traffic to instances
+- Track **Auto Scaling Groups** and **Launch Templates**
+
+**RDS Databases:**
+- View **Subnet Groups** and **Security Groups** protecting databases
+- See **Read Replicas** and their relationships
+- Identify **Parameter Groups** and **Option Groups**
+- Track **Backup configurations** and **Snapshots**
+
+**S3 Buckets:**
+- See **CloudFront Distributions** using buckets as origins
+- View **Lambda functions** triggered by bucket events
+- Identify **IAM policies** and **Bucket Policies** controlling access
+- Track **Versioning** and **Replication** configurations
+
+### Interactive Exploration
+
+- **Click to expand** — Click on any resource or group to see its relationships
+- **Hover for details** — Hover over resources to see quick information
+- **Filter by relationship** — Show only resources connected to a specific resource
+- **Follow connections** — Navigate along relationship paths
+- **Highlight dependencies** — Highlight all resources that depend on a selected resource
+
+## Map Features
+
+### Filtering and Search
+
+Focus on what matters:
+
+- **Filter by service** — Show only EC2, Lambda, RDS, etc.
+- **Filter by account** — Focus on specific AWS accounts
+- **Filter by region** — View resources in specific regions
+- **Filter by VPC** — Isolate resources within VPCs
+- **Filter by tags** — Use AWS tags to filter resources
+- **Search** — Find specific resources by name or ARN
+- **Filter by status** — Show only running, stopped, or terminated resources
+
+### Overlays and Information
+
+Enhance maps with additional information:
+
+- **Cost overlay** — See cost data visualized on the map
+- **Security overlay** — Highlight resources with security findings
+- **Status indicators** — Color-coded resource states
+- **Resource counts** — See how many resources are in each group
+- **Metrics** — CPU, memory, and other metrics where available
+
+### Export and Sharing
+
+- **Export map images** — Save maps as PNG or SVG files
+- **Share map views** — Share specific map views with team members
+- **Bookmark views** — Save frequently used map configurations
+- **Print maps** — Generate printable versions of infrastructure maps
+
+## Use Cases
+
+### Infrastructure Discovery
+
+- **Understand your infrastructure** — Get a complete picture of your AWS environment
+- **Find orphaned resources** — Identify resources that aren't connected to anything
+- **Discover dependencies** — Understand what depends on critical resources
+- **Document architecture** — Use maps as documentation for your infrastructure
+
+### Troubleshooting
+
+- **Trace connections** — Follow relationships to find the source of issues
+- **Identify bottlenecks** — See where resources are concentrated
+- **Find misconfigurations** — Spot resources with unusual connection patterns
+- **Understand impact** — See what would be affected by changes
+
+### Cost Optimization
+
+- **Identify expensive regions** — See where costs are concentrated
+- **Find unused resources** — Spot resources with no connections
+- **Optimize data transfer** — See cross-region and cross-account data flows
+- **Right-size resources** — Understand resource relationships before resizing
+
+### Security Analysis
+
+- **Review network security** — See security group relationships
+- **Identify exposed resources** — Find resources with public access
+- **Track IAM usage** — See which resources use which IAM roles
+- **Audit configurations** — Verify security settings across resources
+
+## Best Practices
+
+<Accordion title="Regular Map Reviews">
+Review your infrastructure maps regularly to:
+- Stay aware of infrastructure changes
+- Identify new resources and relationships
+- Spot potential issues early
+- Maintain documentation accuracy
+</Accordion>
+
+<Accordion title="Using Filters">
+Use filters effectively to:
+- Focus on specific areas of concern
+- Compare infrastructure across accounts or regions
+- Isolate resources by service or application
+- Find resources matching specific criteria
+</Accordion>
+
+<Accordion title="Relationship Analysis">
+When analyzing relationships:
+- Follow dependency chains to understand impact
+- Identify single points of failure
+- Verify expected connections exist
+- Find unexpected or suspicious relationships
+</Accordion>
+
+<Accordion title="Documentation">
+Use maps for documentation:
+- Export maps for architecture diagrams
+- Share map views with team members
+- Bookmark important views for quick access
+- Use maps in presentations and reports
+</Accordion>
+
+## Plan-Specific Features
+
+### Free Forever
+
+- Core infrastructure map
+- Basic relationship visualization
+- Single account and region view
+- Resource grouping by service
+
+### Pro
+
+- Full multi-account and multi-region maps
+- Advanced filtering and search
+- Cost and security overlays
+- Export and sharing capabilities
+- Custom resource groupings
+
+### Enterprise
+
+- Organization-wide maps
+- Advanced relationship analysis
+- Custom map configurations
+- Integration with other tools
+- Priority support for map features
+
+## Next Steps
+
+- [Explore your resources](/features/resources) to see detailed resource information
+- [Review cost analysis](/features/cost) with cost data on maps
+- [Check security findings](/features/security) visualized on infrastructure maps
+- [Connect additional accounts](/getting-started/connection) to see multi-account views

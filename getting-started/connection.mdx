@@ -1,0 +1,139 @@
+---
+title: Connection
+description: Connect your AWS account to InfraMap using our secure CloudFormation template. No credentials required.
+---
+
+# Connecting Your AWS Account
+
+InfraMap connects to your AWS account using a secure, read-only IAM role. We **never require or store your AWS credentials**. Instead, you deploy a CloudFormation template that creates a transparent IAM role with explicit read-only permissions that you can inspect before creation.
+
+## How It Works
+
+InfraMap uses a **cross-account IAM role** that you create in your AWS account. This role has:
+- **Read-only access** to the AWS services InfraMap needs to discover your resources
+- **Explicit permissions** that you can review before deployment
+- **No write or delete permissions** — InfraMap can only read your infrastructure
+- **Transparent configuration** — you see exactly what permissions are granted
+
+<Warning>
+InfraMap never stores your AWS credentials. All access is through the IAM role you create, which you can revoke or delete at any time.
+</Warning>
+
+## Prerequisites
+
+Before connecting your AWS account, ensure you have:
+- An AWS account with appropriate permissions to create IAM roles and CloudFormation stacks
+- Access to the AWS Console or AWS CLI
+- The AWS account ID you want to connect
+
+## Step-by-Step Connection
+
+### Step 1: Navigate to Connection Settings
+
+After signing up, go to your account settings and click **"Connect AWS Account"** or navigate to the connection page.
+
+### Step 2: Launch CloudFormation Stack
+
+InfraMap provides a pre-configured CloudFormation template that you'll deploy in your AWS account. Click the **"Launch CloudFormation Stack"** button, which will:
+
+1. Open the AWS CloudFormation Console in a new tab
+2. Pre-fill the stack template URL
+3. Pre-populate the necessary parameters
+
+<Info>
+Screenshots of the CloudFormation setup process will be added here to guide you through each step.
+</Info>
+
+### Step 3: Review the CloudFormation Template
+
+Before creating the stack, you can review the CloudFormation template to see exactly what will be created:
+
+- **IAM Role**: A read-only role that InfraMap will assume
+- **IAM Policy**: Explicit read-only permissions for AWS services
+- **Trust Policy**: Allows InfraMap's AWS account to assume the role
+
+<Accordion title="What permissions does InfraMap need?">
+InfraMap requires read-only access to discover and map your AWS resources. The IAM policy includes permissions for:
+
+- **EC2**: Describe instances, volumes, security groups, VPCs, subnets, etc.
+- **RDS**: Describe DB instances, clusters, snapshots
+- **Lambda**: List and get function details
+- **S3**: List buckets and get bucket configurations
+- **ECS/EKS**: Describe clusters, services, tasks
+- **And more**: Full list of services and permissions is visible in the CloudFormation template
+
+All permissions are read-only (using `Describe*`, `List*`, and `Get*` actions only). No `Create*`, `Update*`, `Delete*`, or `Modify*` permissions are granted.
+</Accordion>
+
+### Step 4: Configure Stack Parameters
+
+In the CloudFormation console, you'll need to:
+
+1. **Stack name**: Choose a name for your stack (e.g., `inframap-readonly-role`)
+2. **External ID** (optional): Add an additional security layer if desired
+3. Review all parameters before proceeding
+
+### Step 5: Create the Stack
+
+1. Review the stack configuration
+2. Acknowledge that CloudFormation may create IAM resources
+3. Click **"Create stack"**
+
+The stack creation typically takes less than a minute.
+
+### Step 6: Copy the IAM Role ARN
+
+Once the CloudFormation stack is created successfully:
+
+1. Go to the **Outputs** tab of your CloudFormation stack
+2. Copy the **IAM Role ARN** (it will look like: `arn:aws:iam::123456789012:role/inframap-readonly-role`)
+3. Return to the InfraMap connection page
+4. Paste the IAM Role ARN into the connection form
+
+### Step 7: Complete the Connection
+
+After pasting the IAM Role ARN:
+
+1. Click **"Connect Account"**
+2. InfraMap will verify the connection by assuming the role
+3. Once verified, your AWS account will appear in your dashboard
+
+## Verifying the Connection
+
+After connecting, you can verify the setup:
+
+1. **In AWS Console**: Check the IAM role in your account to see the exact permissions
+2. **In InfraMap**: Your account should appear in the dashboard, and you can start scanning your infrastructure
+
+## Security Best Practices
+
+- **Review the IAM policy** before creating the stack to understand exactly what permissions are granted
+- **Use External ID** for additional security if connecting multiple accounts
+- **Monitor the IAM role** in CloudWatch or AWS CloudTrail to see when it's accessed
+- **Revoke access anytime** by deleting the CloudFormation stack or the IAM role
+
+## Troubleshooting
+
+<Accordion title="Connection fails">
+If the connection fails, check:
+
+- The IAM Role ARN is correct and complete
+- The CloudFormation stack was created successfully
+- The IAM role trust policy allows InfraMap's AWS account to assume the role
+- Your AWS account doesn't have service control policies (SCPs) blocking the role assumption
+</Accordion>
+
+<Accordion title="Can't create the CloudFormation stack">
+Ensure you have:
+- Permissions to create IAM roles in your AWS account
+- Permissions to create CloudFormation stacks
+- No organization policies blocking IAM role creation
+</Accordion>
+
+## Next Steps
+
+Once your AWS account is connected:
+
+1. [Select regions to scan](/getting-started/providers) (if applicable)
+2. [Choose your plan](/getting-started/plans) to unlock all features
+3. [Explore your infrastructure map](/features/maps) to see your resources visualized

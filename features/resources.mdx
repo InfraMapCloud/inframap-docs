@@ -1,0 +1,203 @@
+---
+title: Resources
+description: View and explore every AWS resource across all regions. Get detailed information about configurations, relationships, costs, and security.
+---
+
+# Resources
+
+InfraMap provides comprehensive visibility into all your AWS resources across every account and region. Browse your entire infrastructure inventory, drill down into individual resources, and understand every aspect of your cloud environment.
+
+## Resource Inventory
+
+InfraMap automatically discovers and catalogs every resource in your AWS infrastructure. You can view a complete list of all resources organized by:
+
+- **Service type** (EC2, RDS, S3, Lambda, etc.)
+- **AWS region** (us-east-1, eu-west-1, etc.)
+- **AWS account** (if you have multiple accounts connected)
+- **Resource state** (running, stopped, available, etc.)
+
+### Filtering and Search
+
+Quickly find the resources you need using powerful filtering options:
+
+- **Search by name** — Find resources by their name or ARN
+- **Filter by service** — Show only EC2 instances, S3 buckets, or any specific service
+- **Filter by region** — Focus on resources in specific AWS regions
+- **Filter by account** — View resources across multiple AWS accounts
+- **Filter by tags** — Find resources using AWS tags
+- **Filter by state** — Show only running, stopped, or terminated resources
+
+## Resource Details Page
+
+Click on any resource to view its comprehensive details page. Each resource page provides complete information about that resource, organized into clear sections:
+
+### Overview
+
+The overview section provides essential information at a glance:
+
+- **Resource name and ARN** — Unique identifiers
+- **Resource type** — The AWS service and resource type
+- **Region and account** — Location and ownership
+- **Creation date** — When the resource was created
+- **Current state** — Running, stopped, available, etc.
+- **Tags** — All associated AWS tags
+
+### Relationships
+
+InfraMap automatically maps and displays all relationships between resources. The relationships section shows:
+
+- **Connected resources** — See which resources are connected to this one
+- **Dependencies** — Resources this resource depends on
+- **Dependents** — Resources that depend on this one
+- **Visual graph** — Interactive visualization of relationships
+
+<Info>
+Understanding resource relationships helps you identify dependencies before making changes, find orphaned resources, and understand your infrastructure topology.
+</Info>
+
+### Parameters and Configuration
+
+View all parameters and configuration details for the resource:
+
+- **Instance specifications** — Instance types, sizes, and specifications
+- **Network configuration** — VPC, subnets, security groups, IP addresses
+- **Storage configuration** — Volumes, snapshots, and storage settings
+- **IAM roles and policies** — Associated IAM configurations
+- **Environment variables** — Configuration values and secrets (masked)
+- **Service-specific settings** — All service-specific parameters
+
+<Warning>
+Sensitive information like passwords and API keys are automatically masked in the UI for security.
+</Warning>
+
+### Cost Information
+
+Understand the cost implications of each resource:
+
+- **Current monthly cost** — Estimated monthly cost for this resource
+- **Cost breakdown** — Detailed cost components (compute, storage, data transfer, etc.)
+- **Cost trends** — Historical cost data and trends
+- **Cost optimization suggestions** — Recommendations to reduce costs
+- **Idle resource detection** — Alerts if the resource appears unused
+
+<CardGroup cols={2}>
+  <Card
+    title="Cost Analysis"
+    icon="dollar-sign"
+    href="/features/cost"
+  >
+    Learn more about InfraMap's cost analysis and optimization features.
+  </Card>
+  <Card
+    title="Infrastructure Maps"
+    icon="map"
+    href="/features/maps"
+  >
+    Visualize resource relationships in interactive infrastructure maps.
+  </Card>
+</CardGroup>
+
+### Security Findings
+
+InfraMap automatically analyzes each resource for security issues and misconfigurations:
+
+- **Security group rules** — Open ports and exposed services
+- **Public access** — Resources exposed to the internet
+- **Encryption status** — Whether data is encrypted at rest and in transit
+- **IAM permissions** — Overly permissive IAM roles or policies
+- **Compliance checks** — Adherence to security best practices
+- **Risk level** — Overall security risk assessment
+
+Common security findings include:
+
+- **Open security groups** — Security groups allowing access from 0.0.0.0/0
+- **Public S3 buckets** — S3 buckets with public read or write access
+- **Unencrypted storage** — EBS volumes or RDS instances without encryption
+- **Missing MFA** — Resources without multi-factor authentication
+- **Overly permissive policies** — IAM policies with excessive permissions
+
+<Card
+  title="Security Features"
+  icon="shield"
+  href="/features/security"
+>
+  Explore InfraMap's comprehensive security analysis and risk detection capabilities.
+</Card>
+
+## Resource Actions
+
+From the resource details page, you can:
+
+- **View in AWS Console** — Direct link to view the resource in AWS
+- **View relationships** — Navigate to related resources
+- **Export resource data** — Download resource configuration as JSON
+- **View cost history** — See historical cost data
+- **View change history** — Track changes over time (Pro and Enterprise plans)
+
+## Resource Types
+
+InfraMap supports detailed views for all major AWS services:
+
+### Compute Resources
+
+- **EC2 Instances** — Instance details, attached volumes, security groups, tags
+- **Lambda Functions** — Code configuration, environment variables, triggers, IAM roles
+- **ECS Services** — Task definitions, container configurations, load balancers
+- **EKS Clusters** — Node groups, pod configurations, networking
+- **Fargate Tasks** — Container configurations and networking
+
+### Storage Resources
+
+- **S3 Buckets** — Bucket policies, CORS configuration, versioning, encryption
+- **EBS Volumes** — Volume type, size, IOPS, encryption, attachments
+
+### Networking Resources
+
+- **VPCs** — CIDR blocks, subnets, route tables, internet gateways
+- **Security Groups** — Inbound and outbound rules, associated resources
+- **Load Balancers** — Target groups, listeners, health checks
+- **CloudFront Distributions** — Origins, behaviors, caching policies
+
+### Database Resources
+
+- **RDS Instances** — Engine, version, instance class, storage, backups
+- **DynamoDB Tables** — Throughput, indexes, streams, encryption
+- **ElastiCache Clusters** — Engine, node type, configuration
+
+### Messaging Resources
+
+- **SQS Queues** — Visibility timeout, message retention, dead letter queues
+- **SNS Topics** — Subscriptions, delivery policies, encryption
+
+## Best Practices
+
+<Accordion title="Regular Resource Audits">
+Review your resource inventory regularly to:
+- Identify unused or orphaned resources
+- Find resources with security misconfigurations
+- Discover cost optimization opportunities
+- Track resource changes over time
+</Accordion>
+
+<Accordion title="Understanding Relationships">
+Use the relationships view to:
+- Plan infrastructure changes safely
+- Identify dependencies before deletion
+- Understand your infrastructure topology
+- Find resources that may be affected by changes
+</Accordion>
+
+<Accordion title="Security Monitoring">
+Regularly check security findings to:
+- Address security misconfigurations promptly
+- Ensure compliance with security policies
+- Identify resources exposed to the internet
+- Review IAM permissions for least privilege
+</Accordion>
+
+## Next Steps
+
+- [Explore your infrastructure map](/features/maps) to see resources visually
+- [Review cost analysis](/features/cost) to optimize spending
+- [Check security findings](/features/security) to secure your infrastructure
+- [Monitor drift](/features/drift) to track infrastructure changes

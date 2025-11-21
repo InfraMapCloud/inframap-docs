@@ -1,0 +1,88 @@
+---
+title: Providers
+description: InfraMap currently supports AWS with comprehensive service coverage. GCP, Azure, and Alibaba Cloud coming soon.
+---
+
+# Cloud Providers
+
+InfraMap supports multiple cloud providers to help you visualize and manage your entire cloud infrastructure. Currently, we offer comprehensive support for **Amazon Web Services (AWS)**, with additional providers coming soon.
+
+## Currently Supported
+
+### Amazon Web Services (AWS)
+
+InfraMap provides full support for AWS with read-only access to discover and map your resources across accounts and regions. We support a wide range of AWS services organized by category:
+
+#### Compute Services
+
+| Service | Description |
+|---------|-------------|
+| **EC2** | Elastic Compute Cloud instances, volumes, and related resources |
+| **Lambda** | Serverless functions and their configurations |
+| **ECS** | Elastic Container Service clusters, services, and tasks |
+| **EKS** | Elastic Kubernetes Service clusters and workloads |
+| **Fargate** | Serverless compute for containers |
+
+#### Storage Services
+
+| Service | Description |
+|---------|-------------|
+| **S3** | Simple Storage Service buckets and configurations |
+| **EBS** | Elastic Block Store volumes and snapshots |
+
+#### Networking Services
+
+| Service | Description |
+|---------|-------------|
+| **VPC** | Virtual Private Clouds, subnets, and network configurations |
+| **ELB** | Elastic Load Balancers (Application, Network, Classic) |
+| **CloudFront** | Content delivery network distributions |
+| **API Gateway** | REST and HTTP APIs |
+
+#### Database Services
+
+| Service | Description |
+|---------|-------------|
+| **RDS** | Relational Database Service instances and clusters |
+| **DynamoDB** | NoSQL database tables and indexes |
+| **ElastiCache** | In-memory caching with Redis and Memcached |
+
+#### Messaging Services
+
+| Service | Description |
+|---------|-------------|
+| **SQS** | Simple Queue Service queues |
+| **SNS** | Simple Notification Service topics and subscriptions |
+
+<Info>
+InfraMap also discovers and maps relationships between these services, including Security Groups, IAM roles, and other networking and security configurations that connect your resources.
+</Info>
+
+## Coming Soon
+
+We're actively working on expanding InfraMap's support to additional cloud providers:
+
+- **Google Cloud Platform (GCP)** — Full support for GCP services and resources
+- **Microsoft Azure** — Comprehensive Azure resource mapping and visualization
+- **Alibaba Cloud** — Support for Alibaba Cloud infrastructure
+
+<CardGroup cols={1}>
+  <Card
+    title="Request Provider Support"
+    icon="message-circle"
+    href="https://www.inframap.cloud"
+  >
+    Have a specific cloud provider or service you'd like to see supported? Let us know and we'll prioritize it in our roadmap.
+  </Card>
+</CardGroup>
+
+## Getting Started with AWS
+
+To connect your AWS account and start mapping your infrastructure:
+
+1. [Sign up for an account](/getting-started/signup) if you haven't already
+2. [Connect your AWS account](/getting-started/connection) using our secure CloudFormation template
+3. [Choose your plan](/getting-started/plans) to unlock all features
+4. Start exploring your infrastructure map
+
+Once connected, InfraMap will automatically discover and map all supported AWS services in your account, showing you the complete picture of your cloud infrastructure.
