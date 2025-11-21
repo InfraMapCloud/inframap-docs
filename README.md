@@ -1,4 +1,4 @@
-# 📘 VeriSynth Documentation
+# 📘 InfraMap Documentation
 
 Welcome to the **official documentation** for **[InfraMap](https://www.inframap.cloud)** — Real-time interactive map of your Cloud infrastructure that finds waste, idle resources, and drift across accounts.
 
