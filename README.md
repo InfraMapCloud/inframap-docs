@@ -1,6 +1,6 @@
 # 📘 InfraMap Documentation
 
-Welcome to the **official documentation** for **[InfraMap](https://www.inframap.cloud)** — Real-time interactive map of your Cloud infrastructure that finds waste, idle resources, and drift across accounts.
+Welcome to the **official documentation** for **[InfraMap](https://www.inframap.cloud)** - Real-time interactive map of your Cloud infrastructure that finds waste, idle resources, and drift across accounts.
 
 ---
 
@@ -74,7 +74,7 @@ The InfraMap maintainers will review and merge approved PRs.
 * Use code blocks for commands, config, and JSON examples.
 * Prefer **present tense** (“Run this command…”).
 * Maintain consistent Markdown heading levels.
-* Follow the tone of the main docs — clear, trustworthy, and developer-friendly.
+* Follow the tone of the main docs - clear, trustworthy, and developer-friendly.
 
 ---
 

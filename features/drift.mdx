@@ -3,9 +3,9 @@ title: Drift Detection
 description: Continuously monitor infrastructure changes and detect drift. Compare snapshots to identify configuration changes, unused resources, and security risks.
 ---
 
-# Drift Detection
+<img src="/assets/images/drift.jpeg" />
 
-Cloud infrastructure isn't static. It evolves, grows, mutates, and when nobody's watching, **drifts**. InfraMap continuously monitors your AWS infrastructure to detect drift—any time your cloud infrastructure doesn't match what you think it looks like.
+Cloud infrastructure isn't static. It evolves, grows, mutates, and when nobody's watching, **drifts**. InfraMap continuously monitors your AWS infrastructure to detect drift-any time your cloud infrastructure doesn't match what you think it looks like.
 
 ## What is Cloud Drift?
 
@@ -80,11 +80,11 @@ Developers spin up resources without visibility:
 
 Drift is a leading cause of security vulnerabilities:
 
-- **Public S3 buckets** — Buckets made public for testing that were never secured
-- **Overly permissive security groups** — Ports opened temporarily that remain open
-- **Missing encryption** — Resources created without encryption enabled
-- **Forgotten IAM policies** — Policies left in place after projects end
-- **Exposed APIs** — Endpoints made public during development
+- **Public S3 buckets** - Buckets made public for testing that were never secured
+- **Overly permissive security groups** - Ports opened temporarily that remain open
+- **Missing encryption** - Resources created without encryption enabled
+- **Forgotten IAM policies** - Policies left in place after projects end
+- **Exposed APIs** - Endpoints made public during development
 
 Attackers love drift because it creates vulnerabilities nobody is looking at.
 
@@ -100,13 +100,13 @@ Attackers love drift because it creates vulnerabilities nobody is looking at.
 
 Drift is one of the top drivers of cloud overspend:
 
-- **Abandoned volumes** — EBS volumes detached but never deleted
-- **Old NAT Gateways** — Gateways from decommissioned environments
-- **Idle EC2 instances** — Instances left running after projects end
-- **Unused API Gateways** — Gateways created for testing
-- **Forgotten RDS instances** — Databases from old projects
-- **Zombie ENIs** — Network interfaces that should be deleted
-- **Stale EKS node groups** — Kubernetes resources that are no longer needed
+- **Abandoned volumes** - EBS volumes detached but never deleted
+- **Old NAT Gateways** - Gateways from decommissioned environments
+- **Idle EC2 instances** - Instances left running after projects end
+- **Unused API Gateways** - Gateways created for testing
+- **Forgotten RDS instances** - Databases from old projects
+- **Zombie ENIs** - Network interfaces that should be deleted
+- **Stale EKS node groups** - Kubernetes resources that are no longer needed
 
 Every company has at least some of this accidentally running right now.
 
@@ -145,19 +145,19 @@ InfraMap continuously monitors your infrastructure by comparing snapshots over t
 
 InfraMap performs regular scans of your infrastructure:
 
-- **Daily scans** (Free Forever plan) — Capture infrastructure state daily
-- **Hourly scans** (Pro and Enterprise plans) — More frequent detection of changes
-- **Automatic snapshots** — Infrastructure state is captured at each scan
-- **Change comparison** — Each new snapshot is compared to previous ones
+- **Daily scans** (Free Forever plan) - Capture infrastructure state daily
+- **Hourly scans** (Pro and Enterprise plans) - More frequent detection of changes
+- **Automatic snapshots** - Infrastructure state is captured at each scan
+- **Change comparison** - Each new snapshot is compared to previous ones
 
 ### Snapshot Comparison
 
 InfraMap detects drift by comparing infrastructure snapshots:
 
-1. **Baseline snapshot** — Initial capture of your infrastructure state
-2. **Subsequent snapshots** — Regular captures of current state
-3. **Change detection** — Comparison identifies differences
-4. **Drift flagging** — Changes are flagged and categorized
+1. **Baseline snapshot** - Initial capture of your infrastructure state
+2. **Subsequent snapshots** - Regular captures of current state
+3. **Change detection** - Comparison identifies differences
+4. **Drift flagging** - Changes are flagged and categorized
 
 ### Types of Changes Detected
 
@@ -165,37 +165,37 @@ InfraMap flags various types of infrastructure changes:
 
 #### Configuration Changes
 
-- **EC2 instance upgrades** — Instance type changes, size modifications
-- **Security group modifications** — Rules added, removed, or changed
-- **IAM policy updates** — Permissions granted or revoked
-- **Resource tagging** — Tags added, removed, or modified
-- **Network configuration** — VPC, subnet, or routing changes
+- **EC2 instance upgrades** - Instance type changes, size modifications
+- **Security group modifications** - Rules added, removed, or changed
+- **IAM policy updates** - Permissions granted or revoked
+- **Resource tagging** - Tags added, removed, or modified
+- **Network configuration** - VPC, subnet, or routing changes
 
 #### Resource Lifecycle Changes
 
-- **New resources** — Resources created outside of IaC
-- **Deleted resources** — Resources removed manually
-- **Resource state changes** — Instances started, stopped, or terminated
-- **Attachments and detachments** — EBS volumes, network interfaces, etc.
+- **New resources** - Resources created outside of IaC
+- **Deleted resources** - Resources removed manually
+- **Resource state changes** - Instances started, stopped, or terminated
+- **Attachments and detachments** - EBS volumes, network interfaces, etc.
 
 #### Relationship Changes
 
-- **New connections** — Resources connected to new services
-- **Broken connections** — Dependencies removed or changed
-- **Orphaned resources** — Resources no longer connected to anything
+- **New connections** - Resources connected to new services
+- **Broken connections** - Dependencies removed or changed
+- **Orphaned resources** - Resources no longer connected to anything
 
 ### Change Notifications
 
 When drift is detected, InfraMap provides:
 
-- **Change summary** — What changed and when
-- **Resource details** — Specific resources affected
-- **Impact assessment** — Potential security, cost, or operational impact
-- **Email alerts** — Notifications for significant changes (Pro and Enterprise plans)
-- **Change history** — Timeline of all detected changes
+- **Change summary** - What changed and when
+- **Resource details** - Specific resources affected
+- **Impact assessment** - Potential security, cost, or operational impact
+- **Email alerts** - Notifications for significant changes (Pro and Enterprise plans)
+- **Change history** - Timeline of all detected changes
 
 <Info>
-InfraMap builds a real-time visual map of your entire cloud infrastructure, highlighting configuration changes, unused resources, public exposure, security misconfigurations, and orphaned assets—the exact things that drift silently creates.
+InfraMap builds a real-time visual map of your entire cloud infrastructure, highlighting configuration changes, unused resources, public exposure, security misconfigurations, and orphaned assets-the exact things that drift silently creates.
 </Info>
 
 ## Viewing Drift in InfraMap
@@ -204,29 +204,29 @@ InfraMap builds a real-time visual map of your entire cloud infrastructure, high
 
 The drift dashboard provides:
 
-- **Recent changes** — Latest detected changes across your infrastructure
-- **Change frequency** — How often changes are occurring
-- **Change by service** — Which services are changing most
-- **Change by account** — Drift across multiple accounts
-- **Trend analysis** — Patterns in infrastructure changes
+- **Recent changes** - Latest detected changes across your infrastructure
+- **Change frequency** - How often changes are occurring
+- **Change by service** - Which services are changing most
+- **Change by account** - Drift across multiple accounts
+- **Trend analysis** - Patterns in infrastructure changes
 
 ### Resource-Level Drift
 
 View drift for individual resources:
 
-- **Change history** — Timeline of changes to a specific resource
-- **Configuration drift** — How current config differs from expected
-- **Relationship changes** — How connections have changed over time
-- **State changes** — Lifecycle events and state transitions
+- **Change history** - Timeline of changes to a specific resource
+- **Configuration drift** - How current config differs from expected
+- **Relationship changes** - How connections have changed over time
+- **State changes** - Lifecycle events and state transitions
 
 ### Infrastructure Map Integration
 
 See drift visualized in your infrastructure maps:
 
-- **Change indicators** — Visual markers for resources with recent changes
-- **Drift overlay** — Highlight resources that have drifted
-- **Relationship changes** — See how connections have evolved
-- **Historical comparison** — Compare current state to previous snapshots
+- **Change indicators** - Visual markers for resources with recent changes
+- **Drift overlay** - Highlight resources that have drifted
+- **Relationship changes** - See how connections have evolved
+- **Historical comparison** - Compare current state to previous snapshots
 
 <CardGroup cols={2}>
   <Card
@@ -251,31 +251,31 @@ While drift is inevitable in cloud environments, you can minimize its impact:
 
 ### Regular Monitoring
 
-- **Review drift reports** — Check drift dashboard regularly
-- **Set up alerts** — Get notified of significant changes
-- **Investigate changes** — Understand why changes occurred
-- **Document exceptions** — Record intentional changes
+- **Review drift reports** - Check drift dashboard regularly
+- **Set up alerts** - Get notified of significant changes
+- **Investigate changes** - Understand why changes occurred
+- **Document exceptions** - Record intentional changes
 
 ### Infrastructure-as-Code
 
-- **Use IaC consistently** — Make all changes through code
-- **Review IaC changes** — Use pull requests and code review
-- **Reconcile drift** — Regularly sync IaC with actual state
-- **Automate deployments** — Reduce manual changes
+- **Use IaC consistently** - Make all changes through code
+- **Review IaC changes** - Use pull requests and code review
+- **Reconcile drift** - Regularly sync IaC with actual state
+- **Automate deployments** - Reduce manual changes
 
 ### Access Control
 
-- **Limit console access** — Restrict who can make manual changes
-- **Use IAM policies** — Enforce least privilege
-- **Enable CloudTrail** — Audit all infrastructure changes
-- **Require approvals** — Use change management processes
+- **Limit console access** - Restrict who can make manual changes
+- **Use IAM policies** - Enforce least privilege
+- **Enable CloudTrail** - Audit all infrastructure changes
+- **Require approvals** - Use change management processes
 
 ### Team Practices
 
-- **Document changes** — Record why changes were made
-- **Review architecture** — Regular reviews of infrastructure
-- **Communicate changes** — Share changes with the team
-- **Clean up regularly** — Remove unused resources
+- **Document changes** - Record why changes were made
+- **Review architecture** - Regular reviews of infrastructure
+- **Communicate changes** - Share changes with the team
+- **Clean up regularly** - Remove unused resources
 
 ## Best Practices
 
@@ -311,40 +311,15 @@ To prevent drift:
 - Regularly review and clean up resources
 </Accordion>
 
-## Plan-Specific Features
-
-### Free Forever
-
-- Basic drift detection
-- Daily infrastructure scans
-- Change detection and flagging
-- Basic change history
-
-### Pro
-
-- Complete drift detection
-- Hourly infrastructure scans
-- Email alerts for significant changes
-- Detailed change history and trends
-- Change impact assessment
-
-### Enterprise
-
-- Advanced drift detection
-- Real-time change monitoring
-- Custom drift rules and policies
-- Integration with IaC tools
-- Priority support for drift issues
-
 ## Why Drift Gets Worse as Companies Scale
 
 Drift grows exponentially with:
 
-- **Number of engineers** — More people making changes
-- **Number of environments** — Dev, staging, production, etc.
-- **Number of regions** — Resources spread across regions
-- **Number of services** — More services to monitor
-- **Number of automation pipelines** — More automated changes
+- **Number of engineers** - More people making changes
+- **Number of environments** - Dev, staging, production, etc.
+- **Number of regions** - Resources spread across regions
+- **Number of services** - More services to monitor
+- **Number of automation pipelines** - More automated changes
 
 The more people touch the cloud, the more unpredictable it becomes. Eventually, nobody has a single coherent view of the infrastructure. Everyone sees just their piece of the world.
 

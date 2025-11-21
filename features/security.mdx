@@ -3,7 +3,7 @@ title: Security & Risk Detection
 description: Automatically detect security misconfigurations and vulnerabilities. Get step-by-step instructions to fix issues via AWS Console or CLI.
 ---
 
-# Security & Risk Detection
+<img src="/assets/images/security.jpeg" />
 
 InfraMap continuously scans your AWS infrastructure to identify security misconfigurations, vulnerabilities, and compliance issues. For each finding, we provide detailed explanations, impact assessments, and step-by-step remediation instructions to help you secure your cloud environment.
 
@@ -11,19 +11,19 @@ InfraMap continuously scans your AWS infrastructure to identify security misconf
 
 InfraMap analyzes your AWS resources and configurations to detect:
 
-- **Open ports and exposed services** — Resources accessible from the internet
-- **Public access misconfigurations** — Resources with unintended public access
-- **Encryption issues** — Unencrypted data at rest or in transit
-- **IAM permission problems** — Overly permissive policies and roles
-- **Compliance violations** — Deviations from security best practices
+- **Open ports and exposed services** - Resources accessible from the internet
+- **Public access misconfigurations** - Resources with unintended public access
+- **Encryption issues** - Unencrypted data at rest or in transit
+- **IAM permission problems** - Overly permissive policies and roles
+- **Compliance violations** - Deviations from security best practices
 
 Each security finding includes:
 
-- **Severity level** — Critical, High, Medium, or Low
-- **Description** — What the issue is and why it matters
-- **Impact assessment** — Potential risks and consequences
-- **Remediation steps** — Step-by-step instructions to fix the issue
-- **AWS Console and CLI instructions** — Multiple ways to resolve the issue
+- **Severity level** - Critical, High, Medium, or Low
+- **Description** - What the issue is and why it matters
+- **Impact assessment** - Potential risks and consequences
+- **Remediation steps** - Step-by-step instructions to fix the issue
+- **AWS Console and CLI instructions** - Multiple ways to resolve the issue
 
 <Warning>
 Security findings should be addressed promptly, especially Critical and High severity issues. These can expose your infrastructure to unauthorized access or data breaches.
@@ -33,12 +33,12 @@ Security findings should be addressed promptly, especially Critical and High sev
 
 InfraMap detects hundreds of different security issues across your AWS infrastructure. Common categories include:
 
-- **Open ports and exposed services** — SSH, RDP, or other ports open to the internet
-- **Public access misconfigurations** — Public S3 buckets, publicly accessible databases
-- **Encryption issues** — Unencrypted EBS volumes, RDS instances, or S3 buckets
-- **IAM permission problems** — Overly permissive policies, missing MFA, unused access keys
-- **Network security** — Misconfigured security groups, open VPC endpoints
-- **Compliance violations** — Deviations from security best practices and standards
+- **Open ports and exposed services** - SSH, RDP, or other ports open to the internet
+- **Public access misconfigurations** - Public S3 buckets, publicly accessible databases
+- **Encryption issues** - Unencrypted EBS volumes, RDS instances, or S3 buckets
+- **IAM permission problems** - Overly permissive policies, missing MFA, unused access keys
+- **Network security** - Misconfigured security groups, open VPC endpoints
+- **Compliance violations** - Deviations from security best practices and standards
 
 ### Example: Open SSH Ports
 
@@ -51,10 +51,10 @@ Here's an example of how InfraMap presents security findings:
 **Why it's important:** Open SSH ports expose your instances to brute force attacks. If credentials are weak or compromised, attackers can gain unauthorized access to your systems, potentially leading to data breaches, compliance violations, or malicious activities like cryptocurrency mining.
 
 **Impact:**
-- **High risk** — Potential unauthorized access to EC2 instances
-- **Data breach risk** — Attackers could access sensitive data
-- **Compliance violations** — May violate security policies and regulations
-- **Cost implications** — Compromised instances may be used for malicious activities
+- **High risk** - Potential unauthorized access to EC2 instances
+- **Data breach risk** - Attackers could access sensitive data
+- **Compliance violations** - May violate security policies and regulations
+- **Cost implications** - Compromised instances may be used for malicious activities
 
 **Remediation:** Each security finding includes step-by-step instructions for fixing the issue via both the AWS Console and AWS CLI. For this example, you would:
 
@@ -62,19 +62,15 @@ Here's an example of how InfraMap presents security findings:
 2. Edit the security group's inbound rules
 3. Restrict SSH access to your specific IP address or VPN range instead of 0.0.0.0/0
 
-<Info>
-For better security, consider using AWS Systems Manager Session Manager instead of SSH, which doesn't require open ports and provides audit logging.
-</Info>
-
 ## Remediation Instructions
 
 Every security finding in InfraMap includes:
 
-- **Clear explanation** — What the issue is and why it matters
-- **Impact assessment** — Potential risks and consequences
-- **Step-by-step AWS Console instructions** — Detailed walkthrough with screenshots
-- **AWS CLI commands** — Command-line alternatives for automation
-- **Best practices** — Recommendations for secure configurations
+- **Clear explanation** - What the issue is and why it matters
+- **Impact assessment** - Potential risks and consequences
+- **Step-by-step AWS Console instructions** - Detailed walkthrough with screenshots
+- **AWS CLI commands** - Command-line alternatives for automation
+- **Best practices** - Recommendations for secure configurations
 
 You can access remediation instructions directly from each security finding in your dashboard or resource details pages.
 
@@ -84,29 +80,28 @@ You can access remediation instructions directly from each security finding in y
 
 The security dashboard provides:
 
-- **Total findings** — Count of all security issues
-- **Findings by severity** — Critical, High, Medium, Low breakdown
-- **Findings by category** — Network, Storage, IAM, Compliance, etc.
-- **Recent findings** — Newly detected issues
-- **Trends** — Security posture over time
+- **Total findings** - Count of all security issues
+- **Findings by severity** - Critical, High, Medium, Low breakdown
+- **Findings by category** - Network, Storage, IAM, Compliance, etc.
+- **Recent findings** - Newly detected issues
+- **Trends** - Security posture over time
 
 ### Filtering and Search
 
 Find specific security issues:
 
-- **Filter by severity** — Focus on Critical or High severity issues
-- **Filter by service** — View findings for specific AWS services
-- **Filter by resource** — See all findings for a specific resource
-- **Search** — Find findings by keyword or resource name
+- **Filter by severity** - Focus on Critical or High severity issues
+- **Filter by service** - View findings for specific AWS services
+- **Filter by resource** - See all findings for a specific resource
 
 ### Resource-Level Security
 
 View security findings for individual resources:
 
-- **Resource details page** — Security findings section
-- **Security status** — Overall security assessment
-- **Remediation steps** — Instructions specific to that resource
-- **History** — Track when findings were detected and resolved
+- **Resource details page** - Security findings section
+- **Security status** - Overall security assessment
+- **Remediation steps** - Instructions specific to that resource
+- **History** - Track when findings were detected and resolved
 
 <CardGroup cols={2}>
   <Card
@@ -154,29 +149,6 @@ View security findings for individual resources:
 - Set up alerts for suspicious activity
 - Regularly test your incident response procedures
 </Accordion>
-
-## Plan-Specific Features
-
-### Free Forever
-
-- Basic security findings
-- Common misconfiguration detection
-- Basic remediation guidance
-
-### Pro
-
-- Full security analysis and findings
-- Email alerts for new security issues
-- Detailed remediation instructions
-- Security trend tracking
-
-### Enterprise
-
-- Advanced security scanning
-- Compliance checks and reporting
-- Custom security rules
-- Integration with security tools
-- Priority security support
 
 ## Next Steps
 

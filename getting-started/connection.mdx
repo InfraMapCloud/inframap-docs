@@ -12,8 +12,8 @@ InfraMap connects to your AWS account using a secure, read-only IAM role. We **n
 InfraMap uses a **cross-account IAM role** that you create in your AWS account. This role has:
 - **Read-only access** to the AWS services InfraMap needs to discover your resources
 - **Explicit permissions** that you can review before deployment
-- **No write or delete permissions** — InfraMap can only read your infrastructure
-- **Transparent configuration** — you see exactly what permissions are granted
+- **No write or delete permissions** - InfraMap can only read your infrastructure
+- **Transparent configuration** - you see exactly what permissions are granted
 
 <Warning>
 InfraMap never stores your AWS credentials. All access is through the IAM role you create, which you can revoke or delete at any time.
@@ -23,12 +23,13 @@ InfraMap never stores your AWS credentials. All access is through the IAM role y
 
 Before connecting your AWS account, ensure you have:
 - An AWS account with appropriate permissions to create IAM roles and CloudFormation stacks
-- Access to the AWS Console or AWS CLI
-- The AWS account ID you want to connect
+- Access to the AWS Console
 
 ## Step-by-Step Connection
 
 ### Step 1: Navigate to Connection Settings
+
+<img src="/assets/images/connect.jpeg" />
 
 After signing up, go to your account settings and click **"Connect AWS Account"** or navigate to the connection page.
 
@@ -40,9 +41,7 @@ InfraMap provides a pre-configured CloudFormation template that you'll deploy in
 2. Pre-fill the stack template URL
 3. Pre-populate the necessary parameters
 
-<Info>
-Screenshots of the CloudFormation setup process will be added here to guide you through each step.
-</Info>
+<img src="/assets/images/stack.jpeg" />
 
 ### Step 3: Review the CloudFormation Template
 
@@ -52,36 +51,223 @@ Before creating the stack, you can review the CloudFormation template to see exa
 - **IAM Policy**: Explicit read-only permissions for AWS services
 - **Trust Policy**: Allows InfraMap's AWS account to assume the role
 
-<Accordion title="What permissions does InfraMap need?">
-InfraMap requires read-only access to discover and map your AWS resources. The IAM policy includes permissions for:
+<Accordion title="View complete CloudFormation IAM Role Template">
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: InfraMap read-only role for mapping AWS infrastructure
 
-- **EC2**: Describe instances, volumes, security groups, VPCs, subnets, etc.
-- **RDS**: Describe DB instances, clusters, snapshots
-- **Lambda**: List and get function details
-- **S3**: List buckets and get bucket configurations
-- **ECS/EKS**: Describe clusters, services, tasks
-- **And more**: Full list of services and permissions is visible in the CloudFormation template
+Parameters:
+  InfraMapAccountId:
+    Type: String
+    Description: AWS Account ID of InfraMap (the external account that will assume this role)
+  ExternalId:
+    Type: String
+    Description: External ID used by InfraMap when assuming this role
 
-All permissions are read-only (using `Describe*`, `List*`, and `Get*` actions only). No `Create*`, `Update*`, `Delete*`, or `Modify*` permissions are granted.
+Resources:
+  InfraMapReadOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: InfraMapReadOnlyRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::${InfraMapAccountId}:root"
+            Action: "sts:AssumeRole"
+            Condition:
+              StringEquals:
+                sts:ExternalId: !Ref ExternalId
+
+      Policies:
+        - PolicyName: InfraMapReadOnlyPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: EC2ReadOnly
+                Effect: Allow
+                Action:
+                  - "ec2:Describe*"
+                  - "ec2:DescribeVolumes"
+                  - "ec2:DescribeVolumeStatus"
+                  - "ec2:DescribeVolumeAttribute"
+                  - "ec2:DescribeSnapshots"
+                  - "tag:GetResources"
+                  - "tag:GetTagKeys"
+                  - "tag:GetTagValues"
+                Resource: "*"
+
+              - Sid: CloudWatchMetrics
+                Effect: Allow
+                Action:
+                  - "cloudwatch:GetMetricStatistics"
+                  - "cloudwatch:GetMetricData"
+                Resource: "*"
+
+              - Sid: S3ReadOnly
+                Effect: Allow
+                Action:
+                  - "s3:ListAllMyBuckets"
+                  - "s3:GetBucketLocation"
+                  - "s3:GetBucketTagging"
+                  - "s3:GetEncryptionConfiguration"
+                  - "s3:GetBucketVersioning"
+                  - "s3:GetBucketLogging"
+                  - "s3:GetBucketPublicAccessBlock"
+                  - "s3:GetBucketAcl"
+                  - "s3:GetBucketPolicy"
+                  - "s3:GetBucketObjectLockConfiguration"
+                  - "s3:GetReplicationConfiguration"
+                  - "s3:GetLifecycleConfiguration"
+                Resource: "*"
+
+              - Sid: RDSReadOnly
+                Effect: Allow
+                Action:
+                  - "rds:DescribeDBInstances"
+                  - "rds:DescribeDBClusters"
+                  - "rds:DescribeDBSnapshots"
+                  - "rds:DescribeDBClusterSnapshots"
+                  - "rds:DescribeDBParameterGroups"
+                  - "rds:DescribeDBParameters"
+                  - "rds:DescribeDBSubnetGroups"
+                  - "rds:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: DynamoDBReadOnly
+                Effect: Allow
+                Action:
+                  - "dynamodb:ListTables"
+                  - "dynamodb:DescribeTable"
+                  - "dynamodb:DescribeContinuousBackups"
+                  - "dynamodb:ListTagsOfResource"
+                Resource: "*"
+
+              - Sid: ElastiCacheReadOnly
+                Effect: Allow
+                Action:
+                  - "elasticache:DescribeCacheClusters"
+                  - "elasticache:DescribeReplicationGroups"
+                  - "elasticache:DescribeCacheSubnetGroups"
+                  - "elasticache:DescribeCacheParameterGroups"
+                  - "elasticache:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: LambdaReadOnly
+                Effect: Allow
+                Action:
+                  - "lambda:ListFunctions"
+                  - "lambda:GetFunction"
+                  - "lambda:GetFunctionConfiguration"
+                  - "lambda:ListTags"
+                  - "lambda:GetPolicy"
+                  - "lambda:ListEventSourceMappings"
+                  - "lambda:ListProvisionedConcurrencyConfigs"
+                  - "lambda:GetFunctionConcurrency"
+                Resource: "*"
+
+              - Sid: ECSReadOnly
+                Effect: Allow
+                Action:
+                  - "ecs:ListClusters"
+                  - "ecs:DescribeClusters"
+                  - "ecs:ListServices"
+                  - "ecs:DescribeServices"
+                  - "ecs:ListTasks"
+                  - "ecs:DescribeTasks"
+                  - "ecs:ListContainerInstances"
+                  - "ecs:DescribeContainerInstances"
+                  - "ecs:ListTaskDefinitions"
+                  - "ecs:DescribeTaskDefinition"
+                  - "ecs:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: EKSReadOnly
+                Effect: Allow
+                Action:
+                  - "eks:ListClusters"
+                  - "eks:DescribeCluster"
+                  - "eks:ListNodegroups"
+                  - "eks:DescribeNodegroup"
+                  - "eks:ListFargateProfiles"
+                  - "eks:DescribeFargateProfile"
+                  - "eks:ListAddons"
+                  - "eks:DescribeAddon"
+                  - "eks:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: SQSReadOnly
+                Effect: Allow
+                Action:
+                  - "sqs:ListQueues"
+                  - "sqs:GetQueueAttributes"
+                  - "sqs:GetQueueUrl"
+                  - "sqs:ListQueueTags"
+                Resource: "*"
+
+              - Sid: SNSReadOnly
+                Effect: Allow
+                Action:
+                  - "sns:ListTopics"
+                  - "sns:GetTopicAttributes"
+                  - "sns:ListSubscriptionsByTopic"
+                  - "sns:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: CloudFrontReadOnly
+                Effect: Allow
+                Action:
+                  - "cloudfront:ListDistributions"
+                  - "cloudfront:GetDistribution"
+                  - "cloudfront:GetDistributionConfig"
+                  - "cloudfront:ListTagsForResource"
+                Resource: "*"
+
+              - Sid: APIGatewayReadOnly
+                Effect: Allow
+                Action:
+                  - "apigateway:GET"
+                Resource: "*"
+
+              - Sid: ELBReadOnly
+                Effect: Allow
+                Action:
+                  - "elasticloadbalancing:DescribeLoadBalancers"
+                  - "elasticloadbalancing:DescribeListeners"
+                  - "elasticloadbalancing:DescribeTargetGroups"
+                  - "elasticloadbalancing:DescribeLoadBalancerAttributes"
+                  - "elasticloadbalancing:DescribeTags"
+                Resource: "*"
+
+              - Sid: ExplicitDeny
+                Effect: Deny
+                Action:
+                  - "iam:*"
+                  - "kms:Decrypt"
+                  - "ssm:GetParameter"
+                  - "ssm:GetParameters"
+                  - "secretsmanager:GetSecretValue"
+                  - "logs:GetLogEvents"
+                Resource: "*"
+
+Outputs:
+  RoleArn:
+    Description: ARN of the InfraMap read-only role
+    Value: !GetAtt InfraMapReadOnlyRole.Arn
+
+```
 </Accordion>
 
-### Step 4: Configure Stack Parameters
+### Step 4: Create the Stack
 
-In the CloudFormation console, you'll need to:
-
-1. **Stack name**: Choose a name for your stack (e.g., `inframap-readonly-role`)
-2. **External ID** (optional): Add an additional security layer if desired
-3. Review all parameters before proceeding
-
-### Step 5: Create the Stack
-
-1. Review the stack configuration
+1. Review the stack configuration. All fields are pre-filled.
 2. Acknowledge that CloudFormation may create IAM resources
 3. Click **"Create stack"**
 
 The stack creation typically takes less than a minute.
 
-### Step 6: Copy the IAM Role ARN
+### Step 5: Copy the IAM Role ARN
 
 Once the CloudFormation stack is created successfully:
 
@@ -90,50 +276,21 @@ Once the CloudFormation stack is created successfully:
 3. Return to the InfraMap connection page
 4. Paste the IAM Role ARN into the connection form
 
-### Step 7: Complete the Connection
+<img src="/assets/images/arn.jpeg" />
+
+### Step 6: Complete the Connection
 
 After pasting the IAM Role ARN:
 
-1. Click **"Connect Account"**
-2. InfraMap will verify the connection by assuming the role
-3. Once verified, your AWS account will appear in your dashboard
+1. Enter a connection name of your choice
+2. Select regions you wish to cover (1 region for Free plan)
+3. Click **"Connect"**
+4. InfraMap will verify the connection by assuming the role and will then kick off a scan of your infrastructure.
 
-## Verifying the Connection
+<img src="/assets/images/connected.jpeg" />
 
-After connecting, you can verify the setup:
-
-1. **In AWS Console**: Check the IAM role in your account to see the exact permissions
-2. **In InfraMap**: Your account should appear in the dashboard, and you can start scanning your infrastructure
-
-## Security Best Practices
-
-- **Review the IAM policy** before creating the stack to understand exactly what permissions are granted
-- **Use External ID** for additional security if connecting multiple accounts
-- **Monitor the IAM role** in CloudWatch or AWS CloudTrail to see when it's accessed
-- **Revoke access anytime** by deleting the CloudFormation stack or the IAM role
-
-## Troubleshooting
-
-<Accordion title="Connection fails">
-If the connection fails, check:
-
-- The IAM Role ARN is correct and complete
-- The CloudFormation stack was created successfully
-- The IAM role trust policy allows InfraMap's AWS account to assume the role
-- Your AWS account doesn't have service control policies (SCPs) blocking the role assumption
-</Accordion>
-
-<Accordion title="Can't create the CloudFormation stack">
-Ensure you have:
-- Permissions to create IAM roles in your AWS account
-- Permissions to create CloudFormation stacks
-- No organization policies blocking IAM role creation
-</Accordion>
+<img src="/assets/images/scanning.jpeg" />
 
 ## Next Steps
 
-Once your AWS account is connected:
-
-1. [Select regions to scan](/getting-started/providers) (if applicable)
-2. [Choose your plan](/getting-started/plans) to unlock all features
-3. [Explore your infrastructure map](/features/maps) to see your resources visualized
+Once your AWS account is connected and first scan completed, [Explore your infrastructure map](/features/maps) to see your resources visualized.
