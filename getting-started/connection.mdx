@@ -19,6 +19,8 @@ InfraMap uses a **cross-account IAM role** that you create in your AWS account. 
 InfraMap never stores your AWS credentials. All access is through the IAM role you create, which you can revoke or delete at any time.
 </Warning>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uf4YZBGz1b4?si=LIXgZzcAah7Sg46Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Prerequisites
 
 Before connecting your AWS account, ensure you have:
@@ -122,36 +124,22 @@ Resources:
                   - "s3:GetLifecycleConfiguration"
                 Resource: "*"
 
-              - Sid: RDSReadOnly
+              - Sid: IAMReadOnly
                 Effect: Allow
                 Action:
-                  - "rds:DescribeDBInstances"
-                  - "rds:DescribeDBClusters"
-                  - "rds:DescribeDBSnapshots"
-                  - "rds:DescribeDBClusterSnapshots"
-                  - "rds:DescribeDBParameterGroups"
-                  - "rds:DescribeDBParameters"
-                  - "rds:DescribeDBSubnetGroups"
-                  - "rds:ListTagsForResource"
-                Resource: "*"
-
-              - Sid: DynamoDBReadOnly
-                Effect: Allow
-                Action:
-                  - "dynamodb:ListTables"
-                  - "dynamodb:DescribeTable"
-                  - "dynamodb:DescribeContinuousBackups"
-                  - "dynamodb:ListTagsOfResource"
-                Resource: "*"
-
-              - Sid: ElastiCacheReadOnly
-                Effect: Allow
-                Action:
-                  - "elasticache:DescribeCacheClusters"
-                  - "elasticache:DescribeReplicationGroups"
-                  - "elasticache:DescribeCacheSubnetGroups"
-                  - "elasticache:DescribeCacheParameterGroups"
-                  - "elasticache:ListTagsForResource"
+                  - "iam:ListRoles"
+                  - "iam:GetRole"
+                  - "iam:ListRolePolicies"
+                  - "iam:GetRolePolicy"
+                  - "iam:ListAttachedRolePolicies"
+                  - "iam:ListPolicies"
+                  - "iam:GetPolicy"
+                  - "iam:GetPolicyVersion"
+                  - "iam:ListPolicyVersions"
+                  - "iam:ListEntitiesForPolicy"
+                  - "iam:ListInstanceProfilesForRole"
+                  - "iam:GetInstanceProfile"
+                  - "iam:ListInstanceProfiles"
                 Resource: "*"
 
               - Sid: LambdaReadOnly
@@ -167,69 +155,6 @@ Resources:
                   - "lambda:GetFunctionConcurrency"
                 Resource: "*"
 
-              - Sid: ECSReadOnly
-                Effect: Allow
-                Action:
-                  - "ecs:ListClusters"
-                  - "ecs:DescribeClusters"
-                  - "ecs:ListServices"
-                  - "ecs:DescribeServices"
-                  - "ecs:ListTasks"
-                  - "ecs:DescribeTasks"
-                  - "ecs:ListContainerInstances"
-                  - "ecs:DescribeContainerInstances"
-                  - "ecs:ListTaskDefinitions"
-                  - "ecs:DescribeTaskDefinition"
-                  - "ecs:ListTagsForResource"
-                Resource: "*"
-
-              - Sid: EKSReadOnly
-                Effect: Allow
-                Action:
-                  - "eks:ListClusters"
-                  - "eks:DescribeCluster"
-                  - "eks:ListNodegroups"
-                  - "eks:DescribeNodegroup"
-                  - "eks:ListFargateProfiles"
-                  - "eks:DescribeFargateProfile"
-                  - "eks:ListAddons"
-                  - "eks:DescribeAddon"
-                  - "eks:ListTagsForResource"
-                Resource: "*"
-
-              - Sid: SQSReadOnly
-                Effect: Allow
-                Action:
-                  - "sqs:ListQueues"
-                  - "sqs:GetQueueAttributes"
-                  - "sqs:GetQueueUrl"
-                  - "sqs:ListQueueTags"
-                Resource: "*"
-
-              - Sid: SNSReadOnly
-                Effect: Allow
-                Action:
-                  - "sns:ListTopics"
-                  - "sns:GetTopicAttributes"
-                  - "sns:ListSubscriptionsByTopic"
-                  - "sns:ListTagsForResource"
-                Resource: "*"
-
-              - Sid: CloudFrontReadOnly
-                Effect: Allow
-                Action:
-                  - "cloudfront:ListDistributions"
-                  - "cloudfront:GetDistribution"
-                  - "cloudfront:GetDistributionConfig"
-                  - "cloudfront:ListTagsForResource"
-                Resource: "*"
-
-              - Sid: APIGatewayReadOnly
-                Effect: Allow
-                Action:
-                  - "apigateway:GET"
-                Resource: "*"
-
               - Sid: ELBReadOnly
                 Effect: Allow
                 Action:
@@ -243,7 +168,6 @@ Resources:
               - Sid: ExplicitDeny
                 Effect: Deny
                 Action:
-                  - "iam:*"
                   - "kms:Decrypt"
                   - "ssm:GetParameter"
                   - "ssm:GetParameters"
@@ -255,7 +179,6 @@ Outputs:
   RoleArn:
     Description: ARN of the InfraMap read-only role
     Value: !GetAtt InfraMapReadOnlyRole.Arn
-
 ```
 </Accordion>
 
