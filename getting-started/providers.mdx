@@ -3,54 +3,26 @@ title: Providers
 description: InfraMap currently supports AWS with comprehensive service coverage. GCP, Azure, and Alibaba Cloud coming soon.
 ---
 
-InfraMap supports multiple cloud providers to help you visualize and manage your entire cloud infrastructure. Currently, we offer comprehensive support for **Amazon Web Services (AWS)**, with additional providers coming soon.
+InfraMap will support multiple cloud providers to help you visualize and manage your entire cloud infrastructure. Currently, we offer support for **Amazon Web Services (AWS)**, with additional providers coming soon.
 
 ## Currently Supported
 
 ### Amazon Web Services (AWS)
 
-InfraMap provides full support for AWS with read-only access to discover and map your resources across accounts and regions. We support a wide range of AWS services organized by category:
+InfraMap provides support for AWS with read-only access to discover and map your resources across accounts and regions. We will continue to add new services:
 
-#### Compute Services
+#### Supported Services
 
 | Service | Description |
 |---------|-------------|
+| **IAM** | Identity Access Management (Roles and Policies) |
 | **EC2** | Elastic Compute Cloud instances, volumes, and related resources |
-| **Lambda** | Serverless functions and their configurations |
-| **ECS** | Elastic Container Service clusters, services, and tasks |
-| **EKS** | Elastic Kubernetes Service clusters and workloads |
-| **Fargate** | Serverless compute for containers |
-
-#### Storage Services
-
-| Service | Description |
-|---------|-------------|
 | **S3** | Simple Storage Service buckets and configurations |
 | **EBS** | Elastic Block Store volumes and snapshots |
-
-#### Networking Services
-
-| Service | Description |
-|---------|-------------|
 | **VPC** | Virtual Private Clouds, subnets, and network configurations |
 | **ELB** | Elastic Load Balancers (Application, Network, Classic) |
-| **CloudFront** | Content delivery network distributions |
-| **API Gateway** | REST and HTTP APIs |
+| **Lambda** | Serverless functions and their configurations |
 
-#### Database Services
-
-| Service | Description |
-|---------|-------------|
-| **RDS** | Relational Database Service instances and clusters |
-| **DynamoDB** | NoSQL database tables and indexes |
-| **ElastiCache** | In-memory caching with Redis and Memcached |
-
-#### Messaging Services
-
-| Service | Description |
-|---------|-------------|
-| **SQS** | Simple Queue Service queues |
-| **SNS** | Simple Notification Service topics and subscriptions |
 
 <Info>
 InfraMap also discovers and maps relationships between these services, including Security Groups, IAM roles, and other networking and security configurations that connect your resources.
