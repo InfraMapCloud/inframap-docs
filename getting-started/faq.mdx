@@ -1,0 +1,126 @@
+---
+title: FAQ
+description: Frequently asked questions about InfraMap
+---
+
+## **1. Does InfraMap make any changes to my AWS resources?**
+
+No. InfraMap is **100 percent read-only**.
+We do not modify, create, or delete any resources.
+We do not install agents or deploy infrastructure inside your account.
+
+InfraMap only queries descriptive APIs to build a live map of your environment and detect drift.
+
+---
+
+## **2. What permissions does InfraMap require?**
+
+InfraMap requires a **read-only IAM role** with the ability to list and describe specific AWS services. You can:
+
+* restrict the role to specific accounts
+* restrict it to specific regions
+* add IAM conditions for external ID
+* enable CloudTrail logging of all access
+
+The permissions and trust policy are provided during setup.
+
+---
+
+## **3. Will connecting InfraMap to my AWS environment affect our SOC 2 certification?**
+
+No. InfraMap connects using a **strict read-only IAM role** with the minimum set of permissions required to list resources. InfraMap does not deploy agents, modify infrastructure, or write any data to your AWS environment.
+
+SOC 2 focuses on access controls, change management, and vendor evaluation. A read-only visibility tool aligns with those controls and does not interfere with compliance. Many SOC 2 certified companies use similar read-only integrations.
+
+We are happy to provide the exact IAM policy and walk your security team through every permission. See [here](/getting-started/connection#step-3:-review-the-cloudformation-template) for the exact policy request template.
+
+---
+
+## **4. How often does InfraMap scan my environment?**
+
+Scan frequency depends on your plan:
+
+* **Free**: once every 24 hours
+* **Pro**: automatic hourly scans
+* **Enterprise**: configurable scan intervals
+
+---
+
+## **5. Does InfraMap store my AWS data?**
+
+InfraMap stores only the metadata required to:
+
+* build the infrastructure map
+* detect drift
+* track historical changes
+* generate findings
+* show cost insights
+
+We do **not** store application data, secrets, credentials, logs, or PII.
+
+You can delete your account at any time, and all related data is permanently removed.
+
+---
+
+## **6. Is my AWS access secure?**
+
+Yes. InfraMap follows the principle of least privilege:
+
+* A single read-only IAM role
+* External ID support
+* No long-lived access keys
+* No agents or VPC deployments
+* All communication encrypted in transit and at rest
+
+You can revoke access instantly by removing the IAM role.
+
+---
+
+## **7. Does InfraMap support multi-region and multi-account setups?**
+
+Yes.
+
+InfraMap can map:
+
+* multiple AWS accounts
+* multiple regions per account
+* relationships between resources across regions and networks
+
+Pro and Enterprise plans offer expanded region and account limits.
+
+---
+
+## **8. What happens if I downgrade my plan?**
+
+Downgrading affects:
+
+* number of connected accounts
+* number of allowed regions
+* scan frequency
+
+During the dowgrade process, we will walk you through selection which accounts and regions you want to keep - the rest will become inactive, but your data remains intact until you re-upgrade or manually remove a region.
+
+---
+
+## **11. Will InfraMap increase my AWS bill?**
+
+InfraMap uses only AWS **Describe** and **List** API calls. These are either free or extremely low cost. Most users will not notice any AWS billing impact.
+
+---
+
+## **12. How do I delete my InfraMap account?**
+
+You can delete your account from **Settings > Danger Zone**.
+
+This permanently removes:
+
+* your InfraMap account
+* all resource data
+* all drift history
+* all findings
+* all scans
+* all organization data
+
+You can reconnect later by signing in again.
+
+---
